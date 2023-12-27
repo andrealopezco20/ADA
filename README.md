@@ -31,7 +31,11 @@ Se implementa un pipeline de CI/CD en Jenkins con las siguientes etapas y pasos:
    - Se incorpora la herramienta SonarQube para realizar análisis estático del código fuente y mejorar la calidad del mismo.
 
 ## Pruebas Unitarias:
+
+
    - Se implementan pruebas unitarias utilizando frameworks xUnit, como JUnit para proyectos Java.
+
+     
 **Ejemplo de Pruebas Unitarias**
 - *Prueba de Proyección Por Intervalos desde el endpoint /api_gestordepagos/pagos/update*
 ```javascript
@@ -143,7 +147,5 @@ En este fragmento, he incluido solo el código relevante para la prueba funciona
 
 ## Gestión de Issues:
    - Se utiliza GitHub Issues, Trello o Jira para la gestión efectiva de problemas y tareas, permitiendo un seguimiento adecuado del progreso del proyecto.
-
-El pipeline de CI/CD se ha implementado de manera integral, abarcando desde la construcción automática hasta la gestión de issues, asegurando un proceso de desarrollo continuo y una entrega continua de la aplicación web.
 
 El pipeline de CI/CD se ha implementado de manera integral, abarcando desde la construcción automática hasta la gestión de issues, asegurando un proceso de desarrollo continuo y una entrega continua de la aplicación web.
