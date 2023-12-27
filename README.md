@@ -6,7 +6,10 @@ Este proyecto consiste en la implementación de un pipeline de CI/CD para el des
 
 ## Equipos
 
-Se ha formado un equipo conformado por 3 a 6 integrantes, quienes trabajarán en conjunto para llevar a cabo el desarrollo y evolución de la aplicación.
+Se ha formado un equipo conformado por 6 integrantes, quienes trabajarán en conjunto para llevar a cabo el desarrollo y evolución de la aplicación.
+- Jharold Alonso Mayorga Villena
+- Andrea del Rosario López Condori
+- Piero Vizcarra Vargas
 
 ## Selección del Proyecto de Software
 
