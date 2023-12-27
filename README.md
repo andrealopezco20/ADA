@@ -22,54 +22,82 @@ Se implementa un pipeline de CI/CD en Jenkins con las siguientes etapas y pasos:
 **Ejemplo de Pruebas Unitarias**
 - *Prueba de Proyección Por Intervalos desde el endpoint /api_gestordepagos/pagos/update*
 
-Esta prueba unitaria utiliza la biblioteca `supertest` para realizar solicitudes HTTP a la aplicación Node.js. Asegura que la proyección por intervalos desde el endpoint `/api_gestordepagos/pagos/update` funcione correctamente.
+La prueba utiliza `supertest` para realizar una solicitud PATCH al endpoint `/api_gestordepagos/pagos/update` con un conjunto de datos de prueba. Luego, verifica que la respuesta del servidor tenga un código de estado 200 y un encabezado de tipo de contenido `application/json`.
+
+Además, se espera que la respuesta del servidor coincida con una estructura específica, que se define en las expectativas. En este caso, se espera que la respuesta sea un array que contenga un objeto con propiedades como `fieldCount`, `affectedRows`, `insertId`, entre otras.
+
+#### Notas Importantes:
+
+- La prueba asume que el servidor se puede cerrar adecuadamente después de todas las pruebas utilizando `server.close()` en la función `afterAll()`.
+
+- Ajusta las expectativas según la estructura real de la respuesta que esperas del servidor.
+
+- Asegúrate de que la ruta del endpoint `/api_gestordepagos/pagos/update` y la estructura de datos de prueba sean consistentes con la implementación real del servidor.
+
 
 ## Pruebas Funcionales:
    - Se realizan pruebas funcionales con el framework Selenium o Appium para garantizar el correcto funcionamiento de la aplicación.
 
+Mis disculpas por la confusión. Veo que solo quieres incluir el fragmento de código específico en el README. Aquí está el README con la sección de código que proporcionaste:
+
 **Ejemplo de Pruebas Funcionales**
-*- Prueba Uniaria de Usuarios*
+
+*- Prueba Funcional de Usuarios*
+
 El archivo `pruebas.py` contiene un conjunto de pruebas funcionales utilizando el framework de testing `pytest` y la biblioteca `selenium` para realizar pruebas automatizadas en una aplicación web. A continuación, se proporciona una descripción de las principales funciones y la estructura del código:
 
-1. **Clase `LoginPage`:**
-   - Inicializa un objeto para interactuar con la página de inicio de sesión.
-   - Métodos:
-     - `enter_username`: Ingresa el nombre de usuario en el campo correspondiente.
-     - `enter_password`: Ingresa la contraseña en el campo correspondiente.
-     - `click_login_button`: Hace clic en el botón de inicio de sesión.
+```python
+import pytest
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
-2. **Clase `CustomerPage`:**
-   - Inicializa un objeto para interactuar con la página de clientes.
-   - Métodos:
-     - `click_edit_button`: Hace clic en el botón de edición.
-     - `eliminar`: Hace clic en el botón de eliminación.
-     - `click_delete_button`: Hace clic en el botón de confirmación de eliminación.
-     - `click_create_button`: Hace clic en el botón de creación.
-     - `change_password`: Cambia la contraseña del usuario.
-     - `crear_usuario`: Crea un nuevo usuario proporcionando información específica.
-     - `eliminar_usuario`: Realiza las acciones necesarias para eliminar a un usuario.
+# ... (Clases y métodos anteriores)
 
-3. **Clase `TestFunctionalTests`:**
-   - Contiene métodos `setup_method` y `teardown_method` para inicializar y cerrar el navegador respectivamente.
-   - Contiene un método de prueba llamado `test_login_and_create_customer`, que simula el inicio de sesión, accede a la página de clientes, crea un usuario, cambia su contraseña y llama a la función para eliminar al usuario (actualmente comentada).
+class TestFunctionalTests:
+    def setup_method(self):
+        self.driver = webdriver.Chrome()
+        self.driver.get("http://localhost:3000/pagos_mykonos/login")
 
-4. **Ejecución:**
-   - Se utiliza `webdriver.Chrome()` para iniciar el navegador Chrome.
-   - La prueba se realiza en la URL "http://localhost:3000/pagos_mykonos/login".
-   - Después de la ejecución de la prueba, el navegador se cierra.
+    def teardown_method(self):
+        self.driver.quit()
 
-5. **Uso de `pytest`:**
-   - La última línea (`if __name__ == "__main__":`) ejecuta las pruebas utilizando el comando `pytest.main()`.
+    def test_login_and_create_customer(self):
+        login_page = LoginPage(self.driver)
+        login_page.enter_username("IS2@unsa.edu.com")
+        login_page.enter_password("CSUNSA")
+        login_page.click_login_button()
 
-Es importante tener en cuenta que algunas acciones dentro de los métodos de las clases `CustomerPage` pueden estar comentadas, como la eliminación de un usuario. Además, puede ser necesario ajustar las rutas de los elementos web (XPath, ID, NAME, etc.) según la estructura específica de la interfaz de la aplicación que estás probando.
+        customer_page = CustomerPage(self.driver)
+        pagos_button = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, '//*[@id="root"]/div/header/div/div/div[4]/button[3]'))
+        )
+        pagos_button.click()
 
-5. **Pruebas de Performance:**
+        # Crear usuario
+        customer_page.crear_usuario("Andre", "Le", "71837183", "andrea@example.com", "ewpassword", "ewpassword")
+        
+        # Cambiar contraseña del usuario
+        customer_page.change_password("al71837159", "71837159", "71837159")
+
+        # Llama a la función para eliminar al usuario
+        # customer_page.eliminar_usuario()
+
+        # Realiza las verificaciones necesarias para asegurarte de que el cliente se haya eliminado correctamente
+
+if __name__ == "__main__":
+    pytest.main()
+```
+
+En este fragmento, he incluido solo el código relevante para la prueba funcional de usuarios en el README. Puedes ajustar el formato según tus preferencias y agregar más detalles según sea necesario.
+## Pruebas de Performance:
    - Se llevan a cabo pruebas de rendimiento utilizando la herramienta JMeter para evaluar el desempeño de la aplicación bajo diferentes condiciones.
 
-6. **Pruebas de Seguridad:**
+## Pruebas de Seguridad:
    - Se ejecutan pruebas de seguridad utilizando la herramienta OWASP ZAP para identificar y corregir posibles vulnerabilidades.
 
-7. **Gestión de Issues:**
+## Gestión de Issues:
    - Se utiliza GitHub Issues, Trello o Jira para la gestión efectiva de problemas y tareas, permitiendo un seguimiento adecuado del progreso del proyecto.
 
 El pipeline de CI/CD se ha implementado de manera integral, abarcando desde la construcción automática hasta la gestión de issues, asegurando un proceso de desarrollo continuo y una entrega continua de la aplicación web.
