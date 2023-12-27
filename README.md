@@ -38,8 +38,6 @@ Además, se espera que la respuesta del servidor coincida con una estructura esp
 ## Pruebas Funcionales:
    - Se realizan pruebas funcionales con el framework Selenium o Appium para garantizar el correcto funcionamiento de la aplicación.
 
-Mis disculpas por la confusión. Veo que solo quieres incluir el fragmento de código específico en el README. Aquí está el README con la sección de código que proporcionaste:
-
 **Ejemplo de Pruebas Funcionales**
 
 *- Prueba Funcional de Usuarios*
