@@ -11,20 +11,19 @@ Se realiza la integración de cambios mediante merges, siguiendo el flujo `integ
 ### Pipeline de CI/CD en Jenkins
 
 Se implementa un pipeline de CI/CD en Jenkins con las siguientes etapas y pasos:
-
-1. **Construcción Automática:**
+## 1. **Construcción Automática:**
    - Se utiliza la herramienta Maven o Gradle para proyectos Java.
 
-2. **Análisis Estático de Código Fuente:**
+## 2. **Análisis Estático de Código Fuente:**
    - Se incorpora la herramienta SonarQube para realizar análisis estático del código fuente y mejorar la calidad del mismo.
 
-3. **Pruebas Unitarias:**
+## 3. **Pruebas Unitarias:**
    - Se implementan pruebas unitarias utilizando frameworks xUnit, como JUnit para proyectos Java.
 
-4. **Pruebas Funcionales:**
+## 4. **Pruebas Funcionales:**
    - Se realizan pruebas funcionales con el framework Selenium o Appium para garantizar el correcto funcionamiento de la aplicación.
 
-### Ejemplo de Pruebas Funcionales
+**Ejemplo de Pruebas Funcionales**
 
 El archivo `pruebas.py` contiene un conjunto de pruebas funcionales utilizando el framework de testing `pytest` y la biblioteca `selenium` para realizar pruebas automatizadas en una aplicación web. A continuación, se proporciona una descripción de las principales funciones y la estructura del código:
 
