@@ -28,7 +28,13 @@ Se implementa un pipeline de CI/CD en Jenkins con las siguientes etapas y pasos:
    - Se utiliza la herramienta Maven o Gradle para proyectos Java.
 
 ## Análisis Estático de Código Fuente:
-   - Se incorpora la herramienta SonarQube para realizar análisis estático del código fuente y mejorar la calidad del mismo.
+   - Se incorpora la herramienta SonarQube para realizar análisis estático del código fuente y mejorar la calidad del mismo. En el cual se encontro 253 errores en `Frontend`, 107 en `Backend` y 10 errores en Seguridad
+
+     ![image](https://github.com/andrealopezco20/ADA/assets/104209000/cb44f531-8043-46e8-bcf7-5976a179080b)
+     *Imagen original de los errores anterioes*
+![image](https://github.com/andrealopezco20/ADA/assets/104209000/c8ebd4ea-f8bf-4753-9f7e-1e89f7392c34)
+*Imagen actual despues de la modificacion de los errores*
+
 
 ## Pruebas Unitarias:
 
@@ -83,6 +89,8 @@ test('Proyección Por Intervalos desde el endpoint /api_gestordepagos/pagos/upda
 La prueba utiliza `supertest` para realizar una solicitud PATCH al endpoint `/api_gestordepagos/pagos/update` con un conjunto de datos de prueba. Luego, verifica que la respuesta del servidor tenga un código de estado 200 y un encabezado de tipo de contenido `application/json`.
 
 Además, se espera que la respuesta del servidor coincida con una estructura específica, que se define en las expectativas. En este caso, se espera que la respuesta sea un array que contenga un objeto con propiedades como `fieldCount`, `affectedRows`, `insertId`, entre otras.
+
+![image](https://github.com/andrealopezco20/ADA/assets/104209000/d824d661-5edb-4cd2-9e19-0957ce41777b)
 
 
 
