@@ -1,15 +1,3 @@
-### Repositorio y Ramas
-
-Este proyecto utiliza GitHub o GitLab como repositorio de código fuente. Se han creado las siguientes ramas:
-
-- `master`: Rama principal del proyecto.
-- `desarrollo`: Rama para integrar cambios en desarrollo.
-- `integranteX` (o `featureX`): Ramas individuales para cada integrante del equipo o características específicas.
-
-Se realiza la integración de cambios mediante merges, siguiendo el flujo `integranteX` (o `featureX`) -> `desarrollo` -> `master`. Además, se sincronizan los cambios utilizando rebase o merge, siguiendo el flujo `master` -> `desarrollo` (y opcionalmente, `desarrollo` -> `integranteX`).
-
-### Pipeline de CI/CD en Jenkins
-
 # Proyecto de CI/CD para Aplicación Web
 
 ## Descripción del Proyecto
