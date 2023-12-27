@@ -19,12 +19,16 @@ Se implementa un pipeline de CI/CD en Jenkins con las siguientes etapas y pasos:
 
 ## Pruebas Unitarias:
    - Se implementan pruebas unitarias utilizando frameworks xUnit, como JUnit para proyectos Java.
+**Ejemplo de Pruebas Unitarias**
+- *Prueba de Proyección Por Intervalos desde el endpoint /api_gestordepagos/pagos/update*
+
+Esta prueba unitaria utiliza la biblioteca `supertest` para realizar solicitudes HTTP a la aplicación Node.js. Asegura que la proyección por intervalos desde el endpoint `/api_gestordepagos/pagos/update` funcione correctamente.
 
 ## Pruebas Funcionales:
    - Se realizan pruebas funcionales con el framework Selenium o Appium para garantizar el correcto funcionamiento de la aplicación.
 
 **Ejemplo de Pruebas Funcionales**
-
+*- Prueba Uniaria de Usuarios*
 El archivo `pruebas.py` contiene un conjunto de pruebas funcionales utilizando el framework de testing `pytest` y la biblioteca `selenium` para realizar pruebas automatizadas en una aplicación web. A continuación, se proporciona una descripción de las principales funciones y la estructura del código:
 
 1. **Clase `LoginPage`:**
