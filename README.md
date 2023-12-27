@@ -10,6 +10,31 @@ Se realiza la integración de cambios mediante merges, siguiendo el flujo `integ
 
 ### Pipeline de CI/CD en Jenkins
 
+# Proyecto de CI/CD para Aplicación Web
+
+## Descripción del Proyecto
+
+Este proyecto consiste en la implementación de un pipeline de CI/CD para el desarrollo y evolución de una aplicación web. La aplicación debe contar con una interfaz gráfica de usuario, una base de datos (puede ser MySql, SQLite, MongoDB, Neo4J u otro), y seguir los patrones y estilos de arquitectura establecidos. Además, se deben aplicar prácticas de desarrollo de software como Domain-driven Design (DDD), estilos y convenciones de codificación, Clean Code y los principios SOLID.
+
+## Equipos
+
+Se ha formado un equipo conformado por 3 a 6 integrantes, quienes trabajarán en conjunto para llevar a cabo el desarrollo y evolución de la aplicación.
+
+## Selección del Proyecto de Software
+
+El equipo ha seleccionado un proyecto de software web relativamente complejo y poco estructurado. Se ha optado por un proyecto disponible en GitHub, preferiblemente uno desarrollado durante el curso de Ingeniería de Software I. En caso de cambio de proyecto, se han considerado opciones de proyectos Open Source, utilizando listas de proyectos web populares disponibles en los siguientes enlaces:
+- [Proyectos Web Populares](https://github.com/unicodeveloper/awesome-opensource-apps)
+- [Proyectos Web Java](https://github.com/topics/java-web-app)
+
+## Repositorio de Software
+
+Se utiliza Git, GitHub o GitLab como repositorio de código fuente. Se han creado las siguientes ramas:
+- `master`: Rama principal del proyecto.
+- `desarrollo`: Rama para integrar cambios en desarrollo.
+- `integranteX` (o `featureX`): Ramas individuales para cada integrante del equipo o características específicas.
+
+Se realiza la integración de cambios mediante merges, siguiendo el flujo `integranteX` (o `featureX`) -> `desarrollo` -> `master`. Además, se sincronizan los cambios utilizando rebase o merge, siguiendo el flujo `master` -> `desarrollo` (y opcionalmente, `desarrollo` -> `integranteX`).
+
 Se implementa un pipeline de CI/CD en Jenkins con las siguientes etapas y pasos:
 ## Construcción Automática:
    - Se utiliza la herramienta Maven o Gradle para proyectos Java.
@@ -21,18 +46,51 @@ Se implementa un pipeline de CI/CD en Jenkins con las siguientes etapas y pasos:
    - Se implementan pruebas unitarias utilizando frameworks xUnit, como JUnit para proyectos Java.
 **Ejemplo de Pruebas Unitarias**
 - *Prueba de Proyección Por Intervalos desde el endpoint /api_gestordepagos/pagos/update*
+```javascript
+const supertest = require('supertest');
+const { app, server } = require('../app');
+
+const api = supertest(app);
+
+afterAll(() => {
+  server.close(); // Cierra el servidor al terminar todas las pruebas
+});
+
+test('Proyección Por Intervalos desde el endpoint /api_gestordepagos/pagos/update', async () => {
+  // Datos de prueba
+  const requestData = {
+    "idPago": 27,
+    "idEstado": 1
+  };
+
+  // Realizar la solicitud HTTP
+  const response = await api
+    .patch('/api_gestordepagos/pagos/update')
+    .send(requestData);
+
+  // Verificar que la respuesta sea la esperada
+  expect(response.status).toBe(200);
+  expect(response.headers['content-type']).toMatch(/application\/json/);
+
+  const responseData = response.body;
+  // Ajusta las expectativas según la estructura real de la respuesta que esperas
+  expect(responseData).toEqual([
+    {
+      "fieldCount": 0,
+      "affectedRows": 0,
+      "insertId": 0,
+      "info": "",
+      "serverStatus": 2,
+      "warningStatus": 0
+    },
+    null
+  ]);
+});
 
 La prueba utiliza `supertest` para realizar una solicitud PATCH al endpoint `/api_gestordepagos/pagos/update` con un conjunto de datos de prueba. Luego, verifica que la respuesta del servidor tenga un código de estado 200 y un encabezado de tipo de contenido `application/json`.
 
 Además, se espera que la respuesta del servidor coincida con una estructura específica, que se define en las expectativas. En este caso, se espera que la respuesta sea un array que contenga un objeto con propiedades como `fieldCount`, `affectedRows`, `insertId`, entre otras.
 
-#### Notas Importantes:
-
-- La prueba asume que el servidor se puede cerrar adecuadamente después de todas las pruebas utilizando `server.close()` en la función `afterAll()`.
-
-- Ajusta las expectativas según la estructura real de la respuesta que esperas del servidor.
-
-- Asegúrate de que la ruta del endpoint `/api_gestordepagos/pagos/update` y la estructura de datos de prueba sean consistentes con la implementación real del servidor.
 
 
 ## Pruebas Funcionales:
@@ -97,5 +155,7 @@ En este fragmento, he incluido solo el código relevante para la prueba funciona
 
 ## Gestión de Issues:
    - Se utiliza GitHub Issues, Trello o Jira para la gestión efectiva de problemas y tareas, permitiendo un seguimiento adecuado del progreso del proyecto.
+
+El pipeline de CI/CD se ha implementado de manera integral, abarcando desde la construcción automática hasta la gestión de issues, asegurando un proceso de desarrollo continuo y una entrega continua de la aplicación web.
 
 El pipeline de CI/CD se ha implementado de manera integral, abarcando desde la construcción automática hasta la gestión de issues, asegurando un proceso de desarrollo continuo y una entrega continua de la aplicación web.
